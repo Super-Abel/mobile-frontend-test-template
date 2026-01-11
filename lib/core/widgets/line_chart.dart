@@ -16,8 +16,24 @@ class LineChart extends StatelessWidget {
     required this.onFilterChanged,
   });
 
+  List<fl_chart.FlSpot> _getFilteredData() {
+    switch (selectedFilter) {
+      case 'Yesterday':
+        return [fl_chart.FlSpot(0, 3), fl_chart.FlSpot(1, 4), fl_chart.FlSpot(2, 3.5), fl_chart.FlSpot(3, 5)];
+      case '7 days':
+        return [fl_chart.FlSpot(0, 1), fl_chart.FlSpot(1, 2), fl_chart.FlSpot(2, 1.5), fl_chart.FlSpot(3, 3), fl_chart.FlSpot(4, 2.5), fl_chart.FlSpot(5, 4), fl_chart.FlSpot(6, 3.5)];
+      case '15 days':
+        return List.generate(8, (i) => fl_chart.FlSpot(i.toDouble(), (i * 0.5 + 1)));
+      case '30 days':
+        return List.generate(10, (i) => fl_chart.FlSpot(i.toDouble(), (i * 0.3 + 2)));
+      default:
+        return [fl_chart.FlSpot(0, 1), fl_chart.FlSpot(1, 3), fl_chart.FlSpot(2, 2), fl_chart.FlSpot(3, 5), fl_chart.FlSpot(4, 3.5)];
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
+    final data = _getFilteredData();
     return RepaintBoundary(
       child: Container(
       padding: EdgeInsets.all(16.r),
@@ -148,20 +164,7 @@ class LineChart extends StatelessWidget {
                 borderData: fl_chart.FlBorderData(show: false),
                 lineBarsData: [
                   fl_chart.LineChartBarData(
-                    spots: const [
-                      fl_chart.FlSpot(0, 3),
-                      fl_chart.FlSpot(1, 4),
-                      fl_chart.FlSpot(2, 3.5),
-                      fl_chart.FlSpot(3, 5),
-                      fl_chart.FlSpot(4, 4),
-                      fl_chart.FlSpot(5, 6),
-                      fl_chart.FlSpot(6, 5.5),
-                      fl_chart.FlSpot(7, 6.5),
-                      fl_chart.FlSpot(8, 6),
-                      fl_chart.FlSpot(9, 7),
-                      fl_chart.FlSpot(10, 6.5),
-                      fl_chart.FlSpot(11, 8),
-                    ],
+                    spots: data,
                     isCurved: true,
                     color: Colors.blue,
                     barWidth: 3,
