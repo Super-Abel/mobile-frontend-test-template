@@ -18,12 +18,14 @@ class DashboardScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isLandscape = MediaQuery.of(context).orientation == Orientation.landscape;
+
     return Scaffold(
       backgroundColor: const Color(0xFFF5F7FA),
       appBar: AppBar(
         backgroundColor: Colors.white,
         elevation: 0,
-        leading: Builder(
+        leading: isLandscape ? null : Builder(
           builder: (context) => IconButton(
             icon: Icon(IconsaxPlusLinear.menu, color: Colors.black87, size: 24.sp),
             onPressed: () => Scaffold.of(context).openDrawer(),
@@ -110,10 +112,20 @@ class DashboardScreen extends StatelessWidget {
           ),
         ],
       ),
-      drawer: _buildDrawer(context),
-      body: SingleChildScrollView(
-        padding: EdgeInsets.all(16.r),
-        child: Column(
+      drawer: isLandscape ? null : _buildDrawer(context),
+      body: Row(
+        children: [
+          if (isLandscape) _buildNavigationRail(context),
+          Expanded(
+            child: RefreshIndicator(
+        onRefresh: () async {
+          context.read<DashboardBloc>().add(const LoadDashboardData());
+          await Future.delayed(const Duration(seconds: 1));
+        },
+        child: SingleChildScrollView(
+          padding: EdgeInsets.all(16.r),
+          physics: const AlwaysScrollableScrollPhysics(),
+          child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             TextField(
@@ -137,8 +149,12 @@ class DashboardScreen extends StatelessWidget {
             _buildOrdersSection(context),
           ],
         ),
+        ),
+            ),
+          ),
+        ],
       ),
-      bottomNavigationBar: _buildBottomNav(context),
+      bottomNavigationBar: isLandscape ? null : _buildBottomNav(context),
     );
   }
 
@@ -288,6 +304,42 @@ class DashboardScreen extends StatelessWidget {
           ),
         ],
       ),
+    );
+  }
+
+  Widget _buildNavigationRail(BuildContext context) {
+    return BlocBuilder<DashboardBloc, DashboardState>(
+      builder: (context, state) {
+        return NavigationRail(
+          selectedIndex: state.selectedNavIndex,
+          onDestinationSelected: (index) {
+            context.read<DashboardBloc>().add(UpdateNavIndex(index));
+          },
+          labelType: NavigationRailLabelType.selected,
+          destinations: [
+            NavigationRailDestination(
+              icon: Icon(IconsaxPlusLinear.home, size: 24.sp),
+              selectedIcon: Icon(IconsaxPlusBold.home, size: 24.sp),
+              label: Text('Dashboard'),
+            ),
+            NavigationRailDestination(
+              icon: Icon(IconsaxPlusLinear.chart, size: 24.sp),
+              selectedIcon: Icon(IconsaxPlusBold.chart, size: 24.sp),
+              label: Text('Analytics'),
+            ),
+            NavigationRailDestination(
+              icon: Icon(IconsaxPlusLinear.calendar, size: 24.sp),
+              selectedIcon: Icon(IconsaxPlusBold.calendar, size: 24.sp),
+              label: Text('Calendar'),
+            ),
+            NavigationRailDestination(
+              icon: Icon(IconsaxPlusLinear.document, size: 24.sp),
+              selectedIcon: Icon(IconsaxPlusBold.document, size: 24.sp),
+              label: Text('Tables'),
+            ),
+          ],
+        );
+      },
     );
   }
 
