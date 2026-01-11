@@ -34,14 +34,16 @@ class SettingsScreen extends StatelessWidget {
                 Divider(height: 1, indent: 56.w),
                 ListTile(
                   leading: Icon(IconsaxPlusLinear.notification, size: 24.sp),
-                  title: Text('Notifications', style: TextStyle(fontSize: 16.sp)),
+                  title:
+                      Text('Notifications', style: TextStyle(fontSize: 16.sp)),
                   trailing: Icon(Icons.chevron_right, size: 20.sp),
                   onTap: () {},
                 ),
                 Divider(height: 1, indent: 56.w),
                 ListTile(
                   leading: Icon(IconsaxPlusLinear.security, size: 24.sp),
-                  title: Text('Privacy & Security', style: TextStyle(fontSize: 16.sp)),
+                  title: Text('Privacy & Security',
+                      style: TextStyle(fontSize: 16.sp)),
                   trailing: Icon(Icons.chevron_right, size: 20.sp),
                   onTap: () {},
                 ),
@@ -55,8 +57,10 @@ class SettingsScreen extends StatelessWidget {
               borderRadius: BorderRadius.circular(12.r),
             ),
             child: ListTile(
-              leading: Icon(IconsaxPlusLinear.logout, color: Colors.red, size: 24.sp),
-              title: Text('Logout', style: TextStyle(color: Colors.red, fontSize: 16.sp)),
+              leading: Icon(IconsaxPlusLinear.logout,
+                  color: Colors.red, size: 24.sp),
+              title: Text('Logout',
+                  style: TextStyle(color: Colors.red, fontSize: 16.sp)),
               onTap: () {},
             ),
           ),

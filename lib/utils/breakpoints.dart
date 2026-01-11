@@ -14,18 +14,7 @@ class MyBreakpoints<T> extends BaseBreakpoints<T> {
     T? xxlargeTablet, // 1280-1439
     Map<int, T>? custom,
   }) : super(
-          breakpoints: [
-            0,
-            399,
-            479,
-            599,
-            719,
-            839,
-            959,
-            1023,
-            1279,
-            1439
-          ],
+          breakpoints: [0, 399, 479, 599, 719, 839, 959, 1023, 1279, 1439],
           values: [
             smallMobile,
             mediumMobile,

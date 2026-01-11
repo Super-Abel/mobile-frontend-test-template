@@ -33,10 +33,12 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
     Emitter<OrderState> emit,
   ) {
     final updatedOrders = List<OrderModel>.from(state.orders);
-    final orderIndex = updatedOrders.indexWhere((o) => o.userId == event.orderId);
+    final orderIndex =
+        updatedOrders.indexWhere((o) => o.userId == event.orderId);
     if (orderIndex != -1) {
       updatedOrders.removeAt(orderIndex);
-      emit(state.copyWith(orders: updatedOrders, archivedCount: state.archivedCount + 1));
+      emit(state.copyWith(
+          orders: updatedOrders, archivedCount: state.archivedCount + 1));
     }
   }
 

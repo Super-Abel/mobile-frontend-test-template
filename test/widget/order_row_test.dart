@@ -20,7 +20,8 @@ class MockOrderBloc extends Fake implements OrderBloc {
 
 void main() {
   group('OrderRow Widget', () {
-    testWidgets('displays payment status badge correctly', (WidgetTester tester) async {
+    testWidgets('displays payment status badge correctly',
+        (WidgetTester tester) async {
       final orders = [
         const OrderModel(
           customerName: 'John Doe',

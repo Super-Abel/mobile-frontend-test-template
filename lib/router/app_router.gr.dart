@@ -26,7 +26,7 @@ import 'package:flutter_dashboard/features/tables/tables_screen.dart' as _i6;
 /// [_i1.AnalyticsScreen]
 class AnalyticsRoute extends _i7.PageRouteInfo<void> {
   const AnalyticsRoute({List<_i7.PageRouteInfo>? children})
-    : super(AnalyticsRoute.name, initialChildren: children);
+      : super(AnalyticsRoute.name, initialChildren: children);
 
   static const String name = 'AnalyticsRoute';
 
@@ -42,7 +42,7 @@ class AnalyticsRoute extends _i7.PageRouteInfo<void> {
 /// [_i2.CalendarScreen]
 class CalendarRoute extends _i7.PageRouteInfo<void> {
   const CalendarRoute({List<_i7.PageRouteInfo>? children})
-    : super(CalendarRoute.name, initialChildren: children);
+      : super(CalendarRoute.name, initialChildren: children);
 
   static const String name = 'CalendarRoute';
 
@@ -58,7 +58,7 @@ class CalendarRoute extends _i7.PageRouteInfo<void> {
 /// [_i3.DashboardScreen]
 class DashboardRoute extends _i7.PageRouteInfo<void> {
   const DashboardRoute({List<_i7.PageRouteInfo>? children})
-    : super(DashboardRoute.name, initialChildren: children);
+      : super(DashboardRoute.name, initialChildren: children);
 
   static const String name = 'DashboardRoute';
 
@@ -79,10 +79,10 @@ class ErrorRoute extends _i7.PageRouteInfo<ErrorRouteArgs> {
     _i8.VoidCallback? onRetry,
     List<_i7.PageRouteInfo>? children,
   }) : super(
-         ErrorRoute.name,
-         args: ErrorRouteArgs(key: key, message: message, onRetry: onRetry),
-         initialChildren: children,
-       );
+          ErrorRoute.name,
+          args: ErrorRouteArgs(key: key, message: message, onRetry: onRetry),
+          initialChildren: children,
+        );
 
   static const String name = 'ErrorRoute';
 
@@ -118,7 +118,7 @@ class ErrorRouteArgs {
 /// [_i5.SettingsScreen]
 class SettingsRoute extends _i7.PageRouteInfo<void> {
   const SettingsRoute({List<_i7.PageRouteInfo>? children})
-    : super(SettingsRoute.name, initialChildren: children);
+      : super(SettingsRoute.name, initialChildren: children);
 
   static const String name = 'SettingsRoute';
 
@@ -134,7 +134,7 @@ class SettingsRoute extends _i7.PageRouteInfo<void> {
 /// [_i6.TablesScreen]
 class TablesRoute extends _i7.PageRouteInfo<void> {
   const TablesRoute({List<_i7.PageRouteInfo>? children})
-    : super(TablesRoute.name, initialChildren: children);
+      : super(TablesRoute.name, initialChildren: children);
 
   static const String name = 'TablesRoute';
 

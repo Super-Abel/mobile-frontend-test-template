@@ -18,19 +18,23 @@ class DashboardScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final isLandscape = MediaQuery.of(context).orientation == Orientation.landscape;
+    final isLandscape =
+        MediaQuery.of(context).orientation == Orientation.landscape;
 
     return Scaffold(
       backgroundColor: const Color(0xFFF5F7FA),
       appBar: AppBar(
         backgroundColor: Colors.white,
         elevation: 0,
-        leading: isLandscape ? null : Builder(
-          builder: (context) => IconButton(
-            icon: Icon(IconsaxPlusLinear.menu, color: Colors.black87, size: 24.sp),
-            onPressed: () => Scaffold.of(context).openDrawer(),
-          ),
-        ),
+        leading: isLandscape
+            ? null
+            : Builder(
+                builder: (context) => IconButton(
+                  icon: Icon(IconsaxPlusLinear.menu,
+                      color: Colors.black87, size: 24.sp),
+                  onPressed: () => Scaffold.of(context).openDrawer(),
+                ),
+              ),
         title: Row(
           children: [
             Container(
@@ -41,7 +45,8 @@ class DashboardScreen extends StatelessWidget {
                 ),
                 borderRadius: BorderRadius.circular(8),
               ),
-              child: Icon(IconsaxPlusBold.home_2, color: Colors.white, size: 20.sp),
+              child: Icon(IconsaxPlusBold.home_2,
+                  color: Colors.white, size: 20.sp),
             ),
             SizedBox(width: 12.w),
             Text(
@@ -118,38 +123,40 @@ class DashboardScreen extends StatelessWidget {
           if (isLandscape) _buildNavigationRail(context),
           Expanded(
             child: RefreshIndicator(
-        onRefresh: () async {
-          context.read<DashboardBloc>().add(const LoadDashboardData());
-          await Future.delayed(const Duration(seconds: 1));
-        },
-        child: SingleChildScrollView(
-          padding: EdgeInsets.all(16.r),
-          physics: const AlwaysScrollableScrollPhysics(),
-          child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            TextField(
-              decoration: InputDecoration(
-                hintText: 'Search anything',
-                prefixIcon: Icon(IconsaxPlusLinear.search_normal, size: 20.sp),
-                filled: true,
-                fillColor: Colors.white,
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(12.r),
-                  borderSide: BorderSide.none,
+              onRefresh: () async {
+                context.read<DashboardBloc>().add(const LoadDashboardData());
+                await Future.delayed(const Duration(seconds: 1));
+              },
+              child: SingleChildScrollView(
+                padding: EdgeInsets.all(16.r),
+                physics: const AlwaysScrollableScrollPhysics(),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    TextField(
+                      decoration: InputDecoration(
+                        hintText: 'Search anything',
+                        prefixIcon:
+                            Icon(IconsaxPlusLinear.search_normal, size: 20.sp),
+                        filled: true,
+                        fillColor: Colors.white,
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(12.r),
+                          borderSide: BorderSide.none,
+                        ),
+                        contentPadding: EdgeInsets.symmetric(
+                            horizontal: 16.w, vertical: 12.h),
+                      ),
+                    ),
+                    SizedBox(height: 16.h),
+                    _buildKpiCards(),
+                    SizedBox(height: 24.h),
+                    _buildCharts(context),
+                    SizedBox(height: 24.h),
+                    _buildOrdersSection(context),
+                  ],
                 ),
-                contentPadding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 12.h),
               ),
-            ),
-            SizedBox(height: 16.h),
-            _buildKpiCards(),
-            SizedBox(height: 24.h),
-            _buildCharts(context),
-            SizedBox(height: 24.h),
-            _buildOrdersSection(context),
-          ],
-        ),
-        ),
             ),
           ),
         ],
@@ -170,32 +177,32 @@ class DashboardScreen extends StatelessWidget {
             shrinkWrap: true,
             physics: const NeverScrollableScrollPhysics(),
             childAspectRatio: isWide ? 1.8 : 1.5,
-          children: [
-            KpiCard(
-              value: '250k',
-              label: 'Sales',
-              color: Colors.orange,
-              icon: Icons.shopping_cart,
-            ),
-            KpiCard(
-              value: '24m',
-              label: 'Customers',
-              color: Colors.blue,
-              icon: Icons.people,
-            ),
-            KpiCard(
-              value: '15k',
-              label: 'Products',
-              color: Colors.amber,
-              icon: Icons.inventory_2,
-            ),
-            KpiCard(
-              value: '180m',
-              label: 'Revenue',
-              color: Colors.green,
-              icon: Icons.attach_money,
-            ),
-          ],
+            children: [
+              KpiCard(
+                value: '250k',
+                label: 'Sales',
+                color: Colors.orange,
+                icon: Icons.shopping_cart,
+              ),
+              KpiCard(
+                value: '24m',
+                label: 'Customers',
+                color: Colors.blue,
+                icon: Icons.people,
+              ),
+              KpiCard(
+                value: '15k',
+                label: 'Products',
+                color: Colors.amber,
+                icon: Icons.inventory_2,
+              ),
+              KpiCard(
+                value: '180m',
+                label: 'Revenue',
+                color: Colors.green,
+                icon: Icons.attach_money,
+              ),
+            ],
           );
         },
       ),
@@ -217,10 +224,17 @@ class DashboardScreen extends StatelessWidget {
                     flex: 2,
                     child: custom.LineChart(
                       title: 'Overall Sales',
-                      filterOptions: const ['Yesterday', '7 days', '15 days', '30 days'],
+                      filterOptions: const [
+                        'Yesterday',
+                        '7 days',
+                        '15 days',
+                        '30 days'
+                      ],
                       selectedFilter: state.selectedTimeFilter,
                       onFilterChanged: (filter) {
-                        context.read<DashboardBloc>().add(UpdateTimeFilter(filter));
+                        context
+                            .read<DashboardBloc>()
+                            .add(UpdateTimeFilter(filter));
                       },
                     ),
                   ),
@@ -240,10 +254,17 @@ class DashboardScreen extends StatelessWidget {
                 children: [
                   custom.LineChart(
                     title: 'Overall Sales',
-                    filterOptions: const ['Yesterday', '7 days', '15 days', '30 days'],
+                    filterOptions: const [
+                      'Yesterday',
+                      '7 days',
+                      '15 days',
+                      '30 days'
+                    ],
                     selectedFilter: state.selectedTimeFilter,
                     onFilterChanged: (filter) {
-                      context.read<DashboardBloc>().add(UpdateTimeFilter(filter));
+                      context
+                          .read<DashboardBloc>()
+                          .add(UpdateTimeFilter(filter));
                     },
                   ),
                   SizedBox(height: 16.h),
@@ -355,22 +376,22 @@ class DashboardScreen extends StatelessWidget {
           selectedItemColor: Colors.blue,
           unselectedItemColor: Colors.grey,
           items: [
-        BottomNavigationBarItem(
-          icon: Icon(IconsaxPlusBold.home, size: 24.sp),
-          label: 'Dashboard',
-        ),
-        BottomNavigationBarItem(
-          icon: Icon(IconsaxPlusBold.chart, size: 24.sp),
-          label: 'Analytics',
-        ),
-        BottomNavigationBarItem(
-          icon: Icon(IconsaxPlusBold.calendar, size: 24.sp),
-          label: 'Calendar',
-        ),
-        BottomNavigationBarItem(
-          icon: Icon(IconsaxPlusBold.document, size: 24.sp),
-          label: 'Tables',
-        ),
+            BottomNavigationBarItem(
+              icon: Icon(IconsaxPlusBold.home, size: 24.sp),
+              label: 'Dashboard',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(IconsaxPlusBold.chart, size: 24.sp),
+              label: 'Analytics',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(IconsaxPlusBold.calendar, size: 24.sp),
+              label: 'Calendar',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(IconsaxPlusBold.document, size: 24.sp),
+              label: 'Tables',
+            ),
           ],
         );
       },

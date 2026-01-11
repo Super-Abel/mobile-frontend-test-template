@@ -28,5 +28,6 @@ class KpiState extends Equatable {
   }
 
   @override
-  List<Object?> get props => [totalSales, totalCustomers, totalProducts, totalRevenue];
+  List<Object?> get props =>
+      [totalSales, totalCustomers, totalProducts, totalRevenue];
 }

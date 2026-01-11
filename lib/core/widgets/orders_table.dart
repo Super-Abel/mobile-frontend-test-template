@@ -116,7 +116,10 @@ class OrdersTable extends StatelessWidget {
                               )
                             : Text(
                                 order.customerName[0].toUpperCase(),
-                                style: TextStyle(fontSize: 14.sp, color: Colors.blue, fontWeight: FontWeight.bold),
+                                style: TextStyle(
+                                    fontSize: 14.sp,
+                                    color: Colors.blue,
+                                    fontWeight: FontWeight.bold),
                               ),
                       ),
                       SizedBox(width: 12.w),
@@ -126,12 +129,14 @@ class OrdersTable extends StatelessWidget {
                           children: [
                             Text(
                               order.customerName,
-                              style: TextStyle(fontSize: 14.sp, fontWeight: FontWeight.w600),
+                              style: TextStyle(
+                                  fontSize: 14.sp, fontWeight: FontWeight.w600),
                             ),
                             SizedBox(height: 4.h),
                             Text(
                               order.productName,
-                              style: TextStyle(fontSize: 12.sp, color: Colors.grey[600]),
+                              style: TextStyle(
+                                  fontSize: 12.sp, color: Colors.grey[600]),
                             ),
                           ],
                         ),
@@ -141,20 +146,26 @@ class OrdersTable extends StatelessWidget {
                         children: [
                           Text(
                             '\$${order.amount.toStringAsFixed(2)}',
-                            style: TextStyle(fontSize: 14.sp, fontWeight: FontWeight.w600),
+                            style: TextStyle(
+                                fontSize: 14.sp, fontWeight: FontWeight.w600),
                           ),
                           SizedBox(height: 4.h),
                           Container(
-                            padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 4.h),
+                            padding: EdgeInsets.symmetric(
+                                horizontal: 8.w, vertical: 4.h),
                             decoration: BoxDecoration(
-                              color: order.paymentStatus == 'Paid' ? Colors.green[50] : Colors.orange[50],
+                              color: order.paymentStatus == 'Paid'
+                                  ? Colors.green[50]
+                                  : Colors.orange[50],
                               borderRadius: BorderRadius.circular(4.r),
                             ),
                             child: Text(
                               order.paymentStatus,
                               style: TextStyle(
                                 fontSize: 10.sp,
-                                color: order.paymentStatus == 'Paid' ? Colors.green : Colors.orange,
+                                color: order.paymentStatus == 'Paid'
+                                    ? Colors.green
+                                    : Colors.orange,
                                 fontWeight: FontWeight.w600,
                               ),
                             ),

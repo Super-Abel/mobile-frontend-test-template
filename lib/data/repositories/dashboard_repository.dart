@@ -8,7 +8,6 @@ abstract class DashboardRepository {
 class DashboardRepositoryImpl implements DashboardRepository {
   @override
   Future<List<OrderModel>> getOrders() async {
-
     return [
       OrderModel(
         customerName: 'Ellie Collins',

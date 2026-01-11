@@ -5,7 +5,8 @@ import 'package:flutter_dashboard/core/widgets/kpi_card.dart';
 
 void main() {
   group('KpiCard Widget', () {
-    testWidgets('displays value and label correctly', (WidgetTester tester) async {
+    testWidgets('displays value and label correctly',
+        (WidgetTester tester) async {
       await tester.pumpWidget(
         ScreenUtilInit(
           designSize: const Size(360, 690),

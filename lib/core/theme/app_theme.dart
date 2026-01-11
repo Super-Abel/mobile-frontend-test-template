@@ -4,7 +4,8 @@ import '../../gen/colors.gen.dart';
 import '../../gen/fonts.gen.dart';
 
 class AppTheme {
-  static ThemeData get lightTheme => ThemeData.light(useMaterial3: true).copyWith(
+  static ThemeData get lightTheme =>
+      ThemeData.light(useMaterial3: true).copyWith(
         primaryColor: AppColors.main,
         scaffoldBackgroundColor: AppColors.background,
         appBarTheme: AppBarTheme(
