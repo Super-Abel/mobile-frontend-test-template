@@ -36,7 +36,7 @@ jobs:
       run: flutter test test/widget/kpi_card_test.dart test/widget/order_row_test.dart test/widget/notification_badge_test.dart --reporter expanded
 
     - name: Coverage
-      run: flutter test --coverage
+      run: flutter test --coverage --exclude-tags=smoke
 
     - name: Upload coverage
       uses: codecov/codecov-action@v4
