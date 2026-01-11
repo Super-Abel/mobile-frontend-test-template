@@ -17,8 +17,10 @@ class KpiCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isLandscape = MediaQuery.of(context).orientation == Orientation.landscape;
+
     return Container(
-      padding: EdgeInsets.all(16.r),
+      padding: EdgeInsets.all(isLandscape ? 12.r : 16.r),
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(12.r),
@@ -33,39 +35,47 @@ class KpiCard extends StatelessWidget {
       child: Row(
         children: [
           Container(
-            padding: EdgeInsets.all(12.r),
+            padding: EdgeInsets.all(isLandscape ? 8.r : 12.r),
             decoration: BoxDecoration(
               color: color.withOpacity(0.1),
               shape: BoxShape.circle,
             ),
-            child: Icon(icon, color: color, size: 24.sp),
+            child: Icon(icon, color: color, size: isLandscape ? 20.sp : 24.sp),
           ),
-          SizedBox(width: 12.w),
+          SizedBox(width: isLandscape ? 8.w : 12.w),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisSize: MainAxisSize.min,
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Flexible(
-                  child: Text(
-                    value,
-                    style: TextStyle(
-                      fontSize: 20.sp,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.black87,
+                  child: FittedBox(
+                    fit: BoxFit.scaleDown,
+                    alignment: Alignment.centerLeft,
+                    child: Text(
+                      value,
+                      style: TextStyle(
+                        fontSize: isLandscape ? 14.sp : 20.sp,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black87,
+                      ),
+                      maxLines: 1,
                     ),
-                    overflow: TextOverflow.ellipsis,
                   ),
                 ),
-                SizedBox(height: 2.h),
+                if (!isLandscape) SizedBox(height: 2.h),
                 Flexible(
-                  child: Text(
-                    label,
-                    style: TextStyle(
-                      fontSize: 12.sp,
-                      color: Colors.grey[600],
+                  child: FittedBox(
+                    fit: BoxFit.scaleDown,
+                    alignment: Alignment.centerLeft,
+                    child: Text(
+                      label,
+                      style: TextStyle(
+                        fontSize: isLandscape ? 9.sp : 12.sp,
+                        color: Colors.grey[600],
+                      ),
+                      maxLines: 1,
                     ),
-                    overflow: TextOverflow.ellipsis,
                   ),
                 ),
               ],
