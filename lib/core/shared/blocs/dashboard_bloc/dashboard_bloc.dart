@@ -10,6 +10,7 @@ class DashboardBloc extends Bloc<DashboardEvent, DashboardState> {
     on<LoadDashboardData>(_onLoadDashboardData);
     on<UpdateTimeFilter>(_onUpdateTimeFilter);
     on<UpdateNavIndex>(_onUpdateNavIndex);
+    on<FilterByPeriod>(_onFilterByPeriod);
   }
 
   Future<void> _onLoadDashboardData(
@@ -43,5 +44,16 @@ class DashboardBloc extends Bloc<DashboardEvent, DashboardState> {
     Emitter<DashboardState> emit,
   ) {
     emit(state.copyWith(selectedNavIndex: event.index));
+  }
+
+  void _onFilterByPeriod(
+    FilterByPeriod event,
+    Emitter<DashboardState> emit,
+  ) {
+    emit(state.copyWith(selectedTimeFilter: event.period));
+  }
+
+  void filterByPeriod(String period) {
+    add(FilterByPeriod(period));
   }
 }
