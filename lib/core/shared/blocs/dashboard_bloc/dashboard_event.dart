@@ -28,3 +28,12 @@ class UpdateNavIndex extends DashboardEvent {
   @override
   List<Object?> get props => [index];
 }
+
+class FilterByPeriod extends DashboardEvent {
+  final String period;
+
+  const FilterByPeriod(this.period);
+
+  @override
+  List<Object?> get props => [period];
+}
